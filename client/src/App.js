@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
+import { Button } from 'reactstrap';
 
 import logo from './logo.svg';
 import './App.css';
@@ -7,6 +8,7 @@ import Nav from './components/nav';
 import Signin from './components/signin';
 import Signup from './components/signup';
 import Jokes from './components/jokes';
+
 
 class App extends Component {
   render() {
@@ -17,7 +19,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to Dad Jokes Central</h1>
         </header>
         <div>
-        {localStorage.getItem('jwt') && (<button onClick={this.logoutHandler}>Logout</button>)}
+        {localStorage.getItem('jwt') && (<Button outline color="primary" onClick={this.logoutHandler}>Logout</Button>)}
         </div>
         <Route path="/" component={ Nav }></Route>
         <Route path="/api/signup" component={ Signup }></Route>

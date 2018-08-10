@@ -1,12 +1,13 @@
 import React from 'react';
+import { Card, CardTitle, CardText } from 'reactstrap';
 
 const Joke = props => {
     return (
-        <div className='joke'>
-            <p><strong>{props.joke.type}</strong></p>
-            <p>{props.joke.setup}</p>
-            <p>{props.joke.punchline}</p>
-        </div>
+        <Card>
+            <CardTitle><strong>{props.joke.type}</strong></CardTitle>
+            <CardText>{props.joke.setup}</CardText>
+            <CardText>{props.joke.punchline}</CardText>
+        </Card>
     )
 }
 
