@@ -4,6 +4,7 @@ import { Route, withRouter } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import Nav from './components/nav';
+import Signin from './components/signin';
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
         {localStorage.getItem('jwt') && (<button onClick={this.logoutHandler}>Logout</button>)}
         </div>
         <Route path="/" component={ Nav }></Route>
+        <Route path="/api/signin" component={ Signin }></Route>
       </div>
     );
   }
