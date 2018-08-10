@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Nav = () => {
+const Nav = () => { // basic nav page that links the three routes from the /api homepage
     return (
         <div className='nav-container'>
             <Link to='/api/jokes'> Jokes </Link>

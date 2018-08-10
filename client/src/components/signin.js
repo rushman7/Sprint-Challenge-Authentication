@@ -11,9 +11,9 @@ class Signin extends Component {
     return (
       <div className="Signin">
         <h1>Signin</h1>
-            <form onSubmit={this.submitHandler}>
+            <form onSubmit={this.submitHandler}> 
                 <div>
-                    <input 
+                    <input // input field for username
                         name="username"
                         value={this.state.username} 
                         onChange={this.inputChangeHandler}
@@ -21,7 +21,7 @@ class Signin extends Component {
                     />
                 </div>
                 <div>
-                    <input 
+                    <input // input field for password
                         name="password"
                         value={this.state.password} 
                         onChange={this.inputChangeHandler}
@@ -36,15 +36,13 @@ class Signin extends Component {
     );
   }
 
-  inputChangeHandler = event => {
+  inputChangeHandler = event => { 
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
 
-  submitHandler = event => {
+  submitHandler = event => { // submit login data and then reroutes user to /api/jokes page where jokes are mounted.
       event.preventDefault();
-      console.log('state', this.state);
-
       axios
         .post('http://localhost:8000/api/login', this.state)
         .then(res => {

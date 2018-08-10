@@ -15,8 +15,8 @@ class Jokes extends Component {
     );
   }
 
-  componentDidMount() {
-      const token = localStorage.getItem('jwt');
+  componentDidMount() { // displaying the joke cointainer on /api/jokes route
+      const token = localStorage.getItem('jwt');  // .get's the jwt to authorize viewing of the /jokes route
       const requestOptions = {
         headers: {
           Authorization: token
@@ -32,7 +32,7 @@ class Jokes extends Component {
             console.error('Axios Failed')
         }) 
       } else {
-        setTimeout(() => window.location.pathname = '/api', 3000)
+        setTimeout(() => window.location.pathname = '/api', 3000) // a timer set to refresh page to /api (homepage) if user is not logged in
       }
       console.log('state', this.state);
   }

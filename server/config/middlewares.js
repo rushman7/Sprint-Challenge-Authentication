@@ -26,7 +26,7 @@ function authenticate(req, res, next) {
   }
 }
 
-function generateToken(user) {
+function generateToken(user) { // generates the jsonwebtoken 
   const payload = {
     username: user.username
   };

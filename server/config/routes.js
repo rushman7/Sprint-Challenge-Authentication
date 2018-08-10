@@ -10,7 +10,7 @@ module.exports = server => {
   server.get('/api/jokes', authenticate, getJokes);
 };
 
-function register(req, res) {
+function register(req, res) { // .post register function to create a user and save it to the db with a jwt
   // implement user registration
   const user = req.body;
     const hash = bcrypt.hashSync(user.password, 14);
@@ -21,7 +21,7 @@ function register(req, res) {
             db('users')
                 .where({ id: ids[0] })
                 .first()
-                .then(user => { // token generation
+                .then(user => { // jwt generation for user
                     const token = generateToken(user);
                     res.status(201).json(token);
                 });
@@ -33,14 +33,14 @@ function register(req, res) {
 }
 
 
-function login(req, res) {
+function login(req, res) {  // .post login function for users
   // implement user login
   const credentials = req.body;
     db('users')
         .where({ username: credentials.username })
         .first()
         .then(function(user) {
-            if (user && bcrypt.compareSync(credentials.password, user.password)) {
+            if (user && bcrypt.compareSync(credentials.password, user.password)) {  // hashes password via bcrypt
                 const token = generateToken(user);
                 res.send(token);
             } else {
@@ -52,7 +52,7 @@ function login(req, res) {
         })
 }
 
-function getJokes(req, res) {
+function getJokes(req, res) {  // .get function to display dad jokes frm db
   axios
     .get(
       'https://08ad1pao69.execute-api.us-east-1.amazonaws.com/dev/random_ten'
