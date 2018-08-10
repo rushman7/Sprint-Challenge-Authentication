@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Joke from './joke';
 
 class Jokes extends Component {
     state= {
@@ -9,13 +10,7 @@ class Jokes extends Component {
   render() {
     return (
       <div className="jokes">
-        <u1>
-          {this.state.jokes.map(user => 
-            <li key={user.id}>
-              <p>{user.username}</p>
-            </li>
-          )}
-        </u1>
+        {this.state.jokes.map((joke, index) => <Joke key={index} joke={joke} />)}
       </div>
     );
   }
