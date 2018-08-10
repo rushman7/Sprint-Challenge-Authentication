@@ -1,5 +1,4 @@
 const axios = require('axios');
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 const db = require('../database/dbConfig');
@@ -14,16 +13,15 @@ module.exports = server => {
 function register(req, res) {
   // implement user registration
   const user = req.body;
-    const hash = bcrypt.hashSync(user.password, 10);
+    const hash = bcrypt.hashSync(user.password, 14);
     user.password = hash; 
     db('users')
         .insert(user)
-        .then(response => {
-            const id = response[0];
+        .then(function(ids) {
             db('users')
-                .where({ id })
+                .where({ id: ids[0] })
                 .first()
-                .then(user => {
+                .then(user => { // token generation
                     const token = generateToken(user);
                     res.status(201).json(token);
                 });
